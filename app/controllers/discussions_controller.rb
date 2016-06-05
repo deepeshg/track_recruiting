@@ -19,6 +19,7 @@ class DiscussionsController < ApplicationController
     @discussion.follow_up = params[:follow_up]
     @discussion.follow_up_time = params[:follow_up_time]
     @discussion.priority = params[:priority]
+    @discussion.user_id = params[:user_id]
 
     if @discussion.save
       redirect_to "/discussions", :notice => "Discussion created successfully."
@@ -40,6 +41,7 @@ class DiscussionsController < ApplicationController
     @discussion.follow_up = params[:follow_up]
     @discussion.follow_up_time = params[:follow_up_time]
     @discussion.priority = params[:priority]
+    @discussion.user_id = params[:user_id]
 
     if @discussion.save
       redirect_to "/discussions", :notice => "Discussion updated successfully."

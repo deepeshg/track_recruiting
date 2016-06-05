@@ -19,6 +19,7 @@ class ContactsController < ApplicationController
     @contact.phone = params[:phone]
     @contact.source = params[:source]
     @contact.notes = params[:notes]
+    @contact.user_id = params[:user_id]
 
     if @contact.save
       redirect_to "/contacts", :notice => "Contact created successfully."
@@ -40,6 +41,7 @@ class ContactsController < ApplicationController
     @contact.phone = params[:phone]
     @contact.source = params[:source]
     @contact.notes = params[:notes]
+    @contact.user_id = params[:user_id]
 
     if @contact.save
       redirect_to "/contacts", :notice => "Contact updated successfully."

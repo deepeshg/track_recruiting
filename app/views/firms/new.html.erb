@@ -27,6 +27,11 @@
         <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @firm.name %>">
       </div>
 
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
+      </div>
+
       <!-- Label and input for industry -->
       <div class="form-group">
         <label for="industry" class="control-label">

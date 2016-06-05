@@ -23,6 +23,7 @@ class FirmsController < ApplicationController
     @firm.booth_alumni = params[:booth_alumni]
     @firm.firm_score = params[:firm_score]
     @firm.notes = params[:notes]
+    @firm.user_id = params[:user_id]
 
     if @firm.save
       redirect_to "/firms", :notice => "Firm created successfully."
@@ -48,6 +49,7 @@ class FirmsController < ApplicationController
     @firm.booth_alumni = params[:booth_alumni]
     @firm.firm_score = params[:firm_score]
     @firm.notes = params[:notes]
+    @firm.user_id = params[:user_id]
 
     if @firm.save
       redirect_to "/firms", :notice => "Firm updated successfully."
