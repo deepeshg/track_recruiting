@@ -29,7 +29,8 @@
           Contact
         </label>
 
-        <input type="text" id="contact_id" name="contact_id" placeholder="Contact" class="form-control" value="<%= @discussion.contact_id %>">
+        <%= select_tag(:contact_id, options_from_collection_for_select(Contact.all, :id, :name, @discussion.contact_id), :class => "form-control")%>
+        <p><a href="/contacts/new">or add a new contact</a></p>
       </div>
 
       <!-- Label and input for date -->

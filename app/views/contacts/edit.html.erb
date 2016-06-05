@@ -21,7 +21,7 @@
       <!-- Label and input for user_id -->
       <div class="form-group">
         <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
-      </div>      
+      </div>
 
       <!-- Label and input for name -->
       <div class="form-group">
@@ -38,7 +38,8 @@
           Firm
         </label>
 
-        <input type="text" id="firm_id" name="firm_id" placeholder="Firm" class="form-control" value="<%= @contact.firm_id %>">
+        <%= select_tag(:firm_id, options_from_collection_for_select(Firm.all, :id, :name, @contact.firm_id), :class => "form-control")%>
+        <p><a href="/firms/new">or add a new firm</a></p>
       </div>
 
       <!-- Label and input for email -->

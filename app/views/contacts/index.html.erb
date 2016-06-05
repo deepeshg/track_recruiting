@@ -21,7 +21,8 @@
       <% @contacts.each do |contact| %>
       <tr>
         <td><%= contact.name %></td>
-        <td><%= contact.firm_id %></td>
+        <!-- <td><%= contact.firm_id %></td> -->
+        <td><a href="/firms/<%= contact.firm_id %>"><%= contact.firm.name %></td>
         <td><%= contact.email %></td>
         <td><%= contact.phone %></td>
         <td><%= contact.source %></td>

@@ -9,7 +9,8 @@
       <dd><%= @contact.name %></dd>
 
       <dt>Firm</dt>
-      <dd><%= @contact.firm_id %></dd>
+      <!-- <dd><%= @contact.firm_id %></dd> -->
+      <dd><a href="/firms/<%= @contact.firm_id %>"><%= @contact.firm_id %></a></dd>
 
       <dt>Email</dt>
       <dd><%= @contact.email %></dd>

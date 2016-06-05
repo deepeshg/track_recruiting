@@ -5,6 +5,22 @@ class ContactsController < ApplicationController
 
   def show
     @contact = Contact.find(params[:id])
+    @contact.name = params[:name]
+    @contact.firm_id = params[:firm_id]
+    # @Firm = Firm.where({:firm_id => @firm.id})
+    #
+    # require 'open-uri'
+    # url_contact_name = URI.encode(@contact.name)
+    # url_firm_name = URI.encode(@firm.name)
+    # url = "https://www.googleapis.com/customsearch/v1?q="+url_contact_name+url_firm_name+"&cx=003869403274733163220%3Atyi75ntflfu&key=AIzaSyAPKE6XTV3-48RLmlivKkrD-VObQI6QWAQ"
+    # raw_data=open(url).read
+    # require 'json'
+    # parsed_data = JSON.parse(raw_data)
+    # result = parsed_data["items"][0]
+    # @linkedin_link = result["link"]
+    # @org = result["pagemap"]["person"][0]["org"]
+    # @location = result["pagemap"]["person"][0]["location"]
+    # @role = result["pagemap"]["person"][0]["role"]
   end
 
   def new
