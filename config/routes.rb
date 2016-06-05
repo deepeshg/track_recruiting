@@ -1,4 +1,56 @@
 Rails.application.routes.draw do
+  # Routes for the Discussion resource:
+  get "/", :controller => "contacts", :action => "index"
+  # CREATE
+  get "/discussions/new", :controller => "discussions", :action => "new"
+  post "/create_discussion", :controller => "discussions", :action => "create"
+
+  # READ
+  get "/discussions", :controller => "discussions", :action => "index"
+  get "/discussions/:id", :controller => "discussions", :action => "show"
+
+  # UPDATE
+  get "/discussions/:id/edit", :controller => "discussions", :action => "edit"
+  post "/update_discussion/:id", :controller => "discussions", :action => "update"
+
+  # DELETE
+  get "/delete_discussion/:id", :controller => "discussions", :action => "destroy"
+  #------------------------------
+
+  # Routes for the Contact resource:
+  # CREATE
+  get "/contacts/new", :controller => "contacts", :action => "new"
+  post "/create_contact", :controller => "contacts", :action => "create"
+
+  # READ
+  get "/contacts", :controller => "contacts", :action => "index"
+  get "/contacts/:id", :controller => "contacts", :action => "show"
+
+  # UPDATE
+  get "/contacts/:id/edit", :controller => "contacts", :action => "edit"
+  post "/update_contact/:id", :controller => "contacts", :action => "update"
+
+  # DELETE
+  get "/delete_contact/:id", :controller => "contacts", :action => "destroy"
+  #------------------------------
+
+  # Routes for the Firm resource:
+  # CREATE
+  get "/firms/new", :controller => "firms", :action => "new"
+  post "/create_firm", :controller => "firms", :action => "create"
+
+  # READ
+  get "/firms", :controller => "firms", :action => "index"
+  get "/firms/:id", :controller => "firms", :action => "show"
+
+  # UPDATE
+  get "/firms/:id/edit", :controller => "firms", :action => "edit"
+  post "/update_firm/:id", :controller => "firms", :action => "update"
+
+  # DELETE
+  get "/delete_firm/:id", :controller => "firms", :action => "destroy"
+  #------------------------------
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

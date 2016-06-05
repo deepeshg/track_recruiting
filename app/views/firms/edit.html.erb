@@ -1,0 +1,118 @@
+<!-- Validation failure messages -->
+<% if @firm.errors.any? %>
+  <% @firm.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Firm #<%= @firm.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_firm/<%= @firm.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="name" class="control-label">
+          Name
+        </label>
+
+        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @firm.name %>">
+      </div>
+
+      <!-- Label and input for industry -->
+      <div class="form-group">
+        <label for="industry" class="control-label">
+          Industry
+        </label>
+
+        <input type="text" id="industry" name="industry" placeholder="Industry" class="form-control" value="<%= @firm.industry %>">
+      </div>
+
+      <!-- Label and input for on_campus -->
+      <div class="form-group">
+        <label for="on_campus" class="control-label">
+          On campus
+        </label>
+
+        <input type="text" id="on_campus" name="on_campus" placeholder="On campus" class="form-control" value="<%= @firm.on_campus %>">
+      </div>
+
+      <!-- Label and input for location -->
+      <div class="form-group">
+        <label for="location" class="control-label">
+          Location
+        </label>
+
+        <input type="text" id="location" name="location" placeholder="Location" class="form-control" value="<%= @firm.location %>">
+      </div>
+
+      <!-- Label and input for geography -->
+      <div class="form-group">
+        <label for="geography" class="control-label">
+          Geography
+        </label>
+
+        <input type="text" id="geography" name="geography" placeholder="Geography" class="form-control" value="<%= @firm.geography %>">
+      </div>
+
+      <!-- Label and input for functional_fit -->
+      <div class="form-group">
+        <label for="functional_fit" class="control-label">
+          Functional fit
+        </label>
+
+        <input type="text" id="functional_fit" name="functional_fit" placeholder="Functional fit" class="form-control" value="<%= @firm.functional_fit %>">
+      </div>
+
+      <!-- Label and input for industry_fit -->
+      <div class="form-group">
+        <label for="industry_fit" class="control-label">
+          Industry fit
+        </label>
+
+        <input type="text" id="industry_fit" name="industry_fit" placeholder="Industry fit" class="form-control" value="<%= @firm.industry_fit %>">
+      </div>
+
+      <!-- Label and input for booth_alumni -->
+      <div class="form-group">
+        <label for="booth_alumni" class="control-label">
+          Booth alumni
+        </label>
+
+        <input type="text" id="booth_alumni" name="booth_alumni" placeholder="Booth alumni" class="form-control" value="<%= @firm.booth_alumni %>">
+      </div>
+
+      <!-- Label and input for firm_score -->
+      <div class="form-group">
+        <label for="firm_score" class="control-label">
+          Firm score
+        </label>
+
+        <input type="text" id="firm_score" name="firm_score" placeholder="Firm score" class="form-control" value="<%= @firm.firm_score %>">
+      </div>
+
+      <!-- Label and input for notes -->
+      <div class="form-group">
+        <label for="notes" class="control-label">
+          Notes
+        </label>
+
+        <textarea id="notes" name="notes" placeholder="Notes" class="form-control" rows="3"><%= @firm.notes %></textarea>
+      </div>
+
+      <button class="btn btn-warning">
+        Update Firm
+      </button>
+      or
+      <a href="/firms/<%= @firm.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

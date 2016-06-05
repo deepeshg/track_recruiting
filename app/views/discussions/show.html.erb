@@ -1,0 +1,40 @@
+<div class="page-header">
+  <h3>Discussion #<%= @discussion.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+      <dt>Contact</dt>
+      <dd><%= @discussion.contact_id %></dd>
+
+      <dt>Date</dt>
+      <dd><%= @discussion.date %></dd>
+
+      <dt>Notes</dt>
+      <dd><%= @discussion.notes %></dd>
+
+      <dt>Follow up</dt>
+      <dd><%= @discussion.follow_up %></dd>
+
+      <dt>Follow up time</dt>
+      <dd><%= @discussion.follow_up_time %></dd>
+
+      <dt>Priority</dt>
+      <dd><%= @discussion.priority %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/discussions" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/discussions/<%= @discussion.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_discussion/<%= @discussion.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
