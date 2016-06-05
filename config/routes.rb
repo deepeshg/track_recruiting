@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # Routes for the Discussion resource:
   get "/", :controller => "contacts", :action => "index"
   # CREATE
