@@ -32,6 +32,17 @@
       <dt>Firm score</dt>
       <dd><%= @firm.firm_score %></dd>
 
+      <dt>Contacts at <%= @firm.name %></dt>
+      <dd>
+          <!-- <ul class = "list-group"> -->
+            <% @firm.contacts.each do |contact| %>
+            <li class="list-group-item"><a href="/contacts/<%= contact.id %>"><%= contact.name %></a></li>
+            <% end %>
+          <!-- </ul> -->
+      </dd>
+
+      
+
       <dt>Notes</dt>
       <dd><%= @firm.notes %></dd>
 
