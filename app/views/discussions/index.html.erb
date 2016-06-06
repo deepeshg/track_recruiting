@@ -20,6 +20,7 @@
       </tr>
 
       <% @discussions.each do |discussion| %>
+      <% if discussion.user_id == current_user.id %>
       <tr>
         <td><a href="/contacts/<%= discussion.contact.id %>"><%= discussion.contact.name %></a></td>
         <td><a href="/firms/<%= discussion.contact.firm.id %>"><%= discussion.contact.firm.name %></a></td>
@@ -35,6 +36,7 @@
           <a href="/delete_discussion/<%= discussion.id %>" class="btn btn-danger" rel="nofollow"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
         </td>
       </tr>
+      <% end %>
       <% end %>
     </table>
   </div>

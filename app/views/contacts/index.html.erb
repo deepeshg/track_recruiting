@@ -19,6 +19,7 @@
       </tr>
 
       <% @contacts.each do |contact| %>
+      <% if contact.user_id == current_user.id %>
       <tr>
         <td><a href="/contacts/<%= contact.id %>"><%= contact.name %></a></td>
         <!-- <td><%= contact.firm_id %></td> -->
@@ -33,6 +34,7 @@
           <a href="/delete_contact/<%= contact.id %>" class="btn btn-danger" rel="nofollow"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
         </td>
       </tr>
+      <% end %>
       <% end %>
     </table>
   </div>

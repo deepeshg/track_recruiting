@@ -23,6 +23,7 @@
       </tr>
 
       <% @firms.each do |firm| %>
+      <% if firm.user_id == current_user.id %>
       <tr>
         <td><a href="/firms/<%= firm.id %>"><%= firm.name %></a></td>
         <td><%= firm.industry %></td>
@@ -40,6 +41,8 @@
           <a href="/delete_firm/<%= firm.id %>" class="btn btn-danger" rel="nofollow"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
         </td>
       </tr>
+      <% end %>
+
       <% end %>
     </table>
   </div>
