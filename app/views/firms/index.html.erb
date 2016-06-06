@@ -24,7 +24,7 @@
 
       <% @firms.each do |firm| %>
       <tr>
-        <td><%= firm.name %></td>
+        <td><a href="/firms/<%= firm.id %>"><%= firm.name %></a></td>
         <td><%= firm.industry %></td>
         <td><%= firm.on_campus %></td>
         <td><%= firm.location %></td>
@@ -35,9 +35,9 @@
         <td><%= firm.firm_score %></td>
         <td><%= firm.notes %></td>
         <td>
-          <a href="/firms/<%= firm.id %>" class="btn btn-primary">Show</a>
-          <a href="/firms/<%= firm.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_firm/<%= firm.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+
+          <a href="/firms/<%= firm.id %>/edit" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+          <a href="/delete_firm/<%= firm.id %>" class="btn btn-danger" rel="nofollow"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
         </td>
       </tr>
       <% end %>
