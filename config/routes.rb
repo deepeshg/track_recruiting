@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   # Routes for the Discussion resource:
-  get "/", :controller => "firms", :action => "index"
+  get "/", :controller => "recruiting", :action => "home"
   # CREATE
   get "/discussions/new", :controller => "discussions", :action => "new"
   post "/create_discussion", :controller => "discussions", :action => "create"

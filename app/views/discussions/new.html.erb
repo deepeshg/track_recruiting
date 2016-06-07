@@ -58,7 +58,7 @@
           Follow up
         </label>
 
-        <input type="text" id="follow_up" name="follow_up" placeholder="Follow up" class="form-control" value="<%= @discussion.follow_up %>">
+        <%= select_tag(:follow_up, options_for_select(["Yes","No"], "Yes"), :class => "form-control")%>
       </div>
 
       <!-- Label and input for follow_up_time -->
@@ -76,7 +76,7 @@
           Priority
         </label>
 
-        <input type="text" id="priority" name="priority" placeholder="Priority" class="form-control" value="<%= @discussion.priority %>">
+        <%= select_tag(:priority, options_for_select(["Low","Medium","High"], "High"), :class => "form-control")%>
       </div>
 
       <button class="btn btn-primary">

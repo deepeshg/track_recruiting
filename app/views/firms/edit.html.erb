@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Edit Firm #<%= @firm.id %></h3>
+  <h3>Edit: <%= @firm.name %></h3>
 </div>
 
 <div class="row">
@@ -47,7 +47,9 @@
           On campus
         </label>
 
-        <input type="text" id="on_campus" name="on_campus" placeholder="On campus" class="form-control" value="<%= @firm.on_campus %>">
+        <%= select_tag(:on_campus, options_for_select(["Yes","No"], @firm.on_campus), :class => "form-control")%>
+
+        <!-- <input type="text" id="on_campus" name="on_campus" placeholder="On campus" class="form-control" value="<%= @firm.on_campus %>"> -->
       </div>
 
       <!-- Label and input for location -->
@@ -74,7 +76,7 @@
           Functional fit
         </label>
 
-        <input type="text" id="functional_fit" name="functional_fit" placeholder="Functional fit" class="form-control" value="<%= @firm.functional_fit %>">
+        <%= select_tag(:functional_fit, options_for_select(["Yes","No"], @firm.functional_fit), :class => "form-control")%>
       </div>
 
       <!-- Label and input for industry_fit -->
@@ -83,7 +85,7 @@
           Industry fit
         </label>
 
-        <input type="text" id="industry_fit" name="industry_fit" placeholder="Industry fit" class="form-control" value="<%= @firm.industry_fit %>">
+        <%= select_tag(:industry_fit, options_for_select(["Yes","No"], @firm.industry_fit), :class => "form-control")%>
       </div>
 
       <!-- Label and input for booth_alumni -->
@@ -92,7 +94,7 @@
           Booth alumni
         </label>
 
-        <input type="text" id="booth_alumni" name="booth_alumni" placeholder="Booth alumni" class="form-control" value="<%= @firm.booth_alumni %>">
+        <%= select_tag(:booth_alumni, options_for_select(["Yes","No"], @firm.booth_alumni), :class => "form-control")%>
       </div>
 
       <!-- Label and input for firm_score -->
