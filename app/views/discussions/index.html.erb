@@ -25,7 +25,7 @@
         <td><a href="/contacts/<%= discussion.contact.id %>"><%= discussion.contact.name %></a></td>
         <td><a href="/firms/<%= discussion.contact.firm.id %>"><%= discussion.contact.firm.name %></a></td>
         <!-- <td><%= discussion.contact.name %></td> -->
-        <td><%= discussion.date %></td>
+        <td><%= discussion.date.to_formatted_s(:long)  %></td>
         <td><%= discussion.notes %></td>
         <td><%= discussion.follow_up %></td>
         <!-- <td><%= discussion.follow_up_time %></td> -->

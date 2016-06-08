@@ -1,18 +1,19 @@
 <div class="page-header">
-  <h3>Contact #<%= @contact.id %></h3>
+  <h3><%= @contact.name %> </h3>
 </div>
 
 <div class="row">
   <div class="col-md-12">
     <dl class="dl-horizontal">
-      <dt>Name</dt>
-      <dd><%= @contact.name %>   (<a href= "<%= @linkedin_link %>"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
-Linkedin Profile</a>) </dd>
+
 
       <dt>Firm</dt>
       <!-- <dd><%= @contact.firm_id %></dd> -->
       <dd><a href="/firms/<%= @contact.firm_id %>"><%= @contact.firm.name %></a></dd>
 
+      <dt>Profile</dt>
+      <dd>  <a href= "<%= @linkedin_link %>"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
+Linkedin</a> </dd>
       <!-- <dt>Linkedin</dt>
       <dd><a href= "<%= @linkedin_link %>"> Linkedin Profile</a></dd> -->
 
@@ -34,11 +35,11 @@ Linkedin Profile</a>) </dd>
       <dt>Notes</dt>
       <dd><%= @contact.notes %></dd>
 
-      <dt>Discussions with <%= @contact.firm.name %></dt>
+      <dt>Discussions with <%= @contact.name %></dt>
       <dd>
           <!-- <ul class = "list-group"> -->
             <% @contact.discussions.each do |discussion| %>
-            <li class="list-group-item"><a href="/discussions/<%= discussion.id %>"><%= discussion.date %></a></li>
+            <li class="list-group-item"><a href="/discussions/<%= discussion.id %>"><%= discussion.date.to_formatted_s(:long)  %></a></li>
             <% end %>
           <!-- </ul> -->
       </dd>

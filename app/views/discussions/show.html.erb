@@ -12,7 +12,7 @@
       <dd><a href="/firm/<%= @discussion.contact.firm.id %>"><%= @discussion.contact.firm.name %></a></dd>
 
       <dt>Date</dt>
-      <dd><%= @discussion.date %></dd>
+      <dd><%= @discussion.date.to_formatted_s(:long)  %></dd>
 
       <dt>Notes</dt>
       <dd><%= @discussion.notes %></dd>
@@ -21,7 +21,7 @@
       <dd><%= @discussion.follow_up %></dd>
 
       <dt>Follow up time</dt>
-      <dd><%= @discussion.follow_up_time %></dd>
+      <dd><%= @discussion.follow_up_time.to_formatted_s(:long)  %></dd>
 
       <dt>Priority</dt>
       <dd><%= @discussion.priority %></dd>
