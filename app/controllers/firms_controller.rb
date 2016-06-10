@@ -7,7 +7,7 @@ class FirmsController < ApplicationController
     @firm = Firm.find(params[:id])
 
     require 'open-uri'
-    # url_contact_name = URI.encode(@contact.name)
+  begin
     url_firm_name = URI.encode(@firm.name)
     api_key = ENV["linkedin_search_api_key"]
     url = "https://www.googleapis.com/customsearch/v1?q="+url_firm_name+ENV["linkedin_search_api_key"]
@@ -16,6 +16,10 @@ class FirmsController < ApplicationController
     parsed_data = JSON.parse(raw_data)
     result = parsed_data["items"][0]
     @linkedin_link = result["link"]
+  rescue
+    # code in case of an error here
+    @linkedin_link = "https://www.linkedin.com"
+  end
 
   end
 

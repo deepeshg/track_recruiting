@@ -8,6 +8,11 @@ gem 'figaro'
 
 gem "http"
 
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
+
+gem "chronic"
+
 gem "coffee-script-source", "1.8.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
