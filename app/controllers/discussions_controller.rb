@@ -64,4 +64,14 @@ class DiscussionsController < ApplicationController
 
     redirect_to "/discussions", :notice => "Discussion deleted."
   end
+
+  def toggle_discussion
+    @discussion = Discussion.find(params[:id])
+    @discussion.follow_up = "No"
+    if @discussion.save
+    redirect_to "/", :notice => "Discussion removed from follow-up list."
+    else
+    render 'edit'
+    end
+  end
 end

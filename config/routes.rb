@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   devise_for :users
   # Routes for the Discussion resource:
   get "/", :controller => "recruiting", :action => "home"
+  get "/toggle_event/:id", :controller => "events", :action => "toggle_event"
+  get "/toggle_discussion/:id", :controller => "discussions", :action => "toggle_discussion"
   # CREATE
   get "/discussions/new", :controller => "discussions", :action => "new"
   post "/create_discussion", :controller => "discussions", :action => "create"

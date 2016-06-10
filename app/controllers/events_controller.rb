@@ -61,4 +61,16 @@ class EventsController < ApplicationController
 
     redirect_to "/events", :notice => "Event deleted."
   end
+
+  def toggle_event
+    @event = Event.find(params[:id])
+    @event.past_event = true
+    if @event.save
+    redirect_to "/", :notice => "Event moved to past events."
+  else
+    render 'edit'
+  end
+
+  end
+
 end
