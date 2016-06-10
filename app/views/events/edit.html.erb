@@ -1,0 +1,106 @@
+<!-- Validation failure messages -->
+<% if @event.errors.any? %>
+  <% @event.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit <%= @event.name %> with <%= @event.firm.name %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_event/<%= @event.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for event_name -->
+      <div class="form-group">
+        <label for="event_name" class="control-label">
+          Event name
+        </label>
+
+        <input type="text" id="event_name" name="event_name" placeholder="Event name" class="form-control" value="<%= @event.event_name %>">
+      </div>
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
+      </div>
+
+      <!-- Label and input for firm_id -->
+      <div class="form-group">
+        <label for="firm_id" class="control-label">
+          Firm
+        </label>
+
+        <%= select_tag(:firm_id, options_from_collection_for_select(Firm.where(user_id: current_user.id).order(:name), :id, :name, @event.firm_id), :class => "form-control")%>
+        <p><a href="/firm/new">or add a new firm</a></p>
+      </div>
+
+
+      <!-- Label and input for event_type -->
+      <div class="form-group">
+        <label for="event_type" class="control-label">
+                Event type
+        </label>
+
+        <input type="text" id="event_type" name="event_type" placeholder="Event type" class="form-control" value="<%= @event.event_type %>">
+      </div>
+
+      <!-- Label and input for time -->
+      <div class="form-group">
+        <label for="time" class="control-label">
+          Time
+        </label>
+
+        <input type="text" id="time" name="time" placeholder="Time" class="form-control" value="<%= @event.time %>">
+      </div>
+
+      <!-- Label and input for location -->
+      <div class="form-group">
+        <label for="location" class="control-label">
+          Location
+        </label>
+
+        <input type="text" id="location" name="location" placeholder="Location" class="form-control" value="<%= @event.location %>">
+      </div>
+
+      <!-- Label and input for priority -->
+      <div class="form-group">
+        <label for="priority" class="control-label">
+          Priority
+        </label>
+
+        <input type="text" id="priority" name="priority" placeholder="Priority" class="form-control" value="<%= @event.priority %>">
+      </div>
+
+      <!-- Label and input for notes -->
+      <div class="form-group">
+        <label for="notes" class="control-label">
+          Notes
+        </label>
+
+        <textarea id="notes" name="notes" placeholder="Notes" class="form-control" rows="3"><%= @event.notes %></textarea>
+      </div>
+
+      <!-- Label and input for past_event -->
+      <div class="checkbox">
+        <label for="past_event">
+          <input type="checkbox" id="past_event" name="past_event" value="1" <%= "checked" if @event.past_event %>>
+          Past event
+        </label>
+      </div>
+
+      <button class="btn btn-warning">
+        Update Event
+      </button>
+      or
+      <a href="/events/<%= @event.id %>">Cancel</a>
+    </form>
+  </div>
+</div>
