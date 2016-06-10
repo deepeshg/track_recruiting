@@ -38,7 +38,7 @@
           Firm
         </label>
 
-        <%= select_tag(:firm_id, options_from_collection_for_select(Firm.all, :id, :name, @contact.firm_id), :class => "form-control")%>
+        <%= select_tag(:firm_id, options_from_collection_for_select(Firm.where(user_id: current_user.id).order(:name), :id, :name, @contact.firm_id), :class => "form-control")%>
         <p><a href="/firms/new">or add a new firm</a></p>
       </div>
 

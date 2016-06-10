@@ -5,6 +5,9 @@ class FirmsController < ApplicationController
 
   def show
     @firm = Firm.find(params[:id])
+    if current_user.id != @firm.user_id
+      redirect_to "/firms", :alert => "Page access denied"
+    end
 
     require 'open-uri'
   begin
@@ -50,6 +53,9 @@ class FirmsController < ApplicationController
 
   def edit
     @firm = Firm.find(params[:id])
+    if current_user.id != @firm.user_id
+      redirect_to "/firms", :alert => "Page access denied"
+    end
   end
 
   def update

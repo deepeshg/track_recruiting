@@ -5,7 +5,9 @@ class ContactsController < ApplicationController
 
   def show
     @contact = Contact.find(params[:id])
-
+    if current_user.id != @contact.user_id
+      redirect_to "/contacts", :alert => "Page access denied"
+    end
 
     require 'open-uri'
     url_contact_name = URI.encode(@contact.name)
@@ -33,6 +35,7 @@ class ContactsController < ApplicationController
 
   def new
     @contact = Contact.new
+    @firms = Firm.all
   end
 
   def create
@@ -54,6 +57,9 @@ class ContactsController < ApplicationController
 
   def edit
     @contact = Contact.find(params[:id])
+    if current_user.id != @contact.user_id
+      redirect_to "/contacts", :alert => "Page access denied"
+    end
   end
 
   def update

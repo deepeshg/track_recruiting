@@ -5,6 +5,9 @@ class DiscussionsController < ApplicationController
 
   def show
     @discussion = Discussion.find(params[:id])
+    if current_user.id != @discussion.user_id
+      redirect_to "/discussions", :alert => "Page access denied"
+    end
   end
 
   def new
@@ -31,9 +34,9 @@ class DiscussionsController < ApplicationController
   def edit
     @discussion = Discussion.find(params[:id])
 
-    # if current_user.id != @discussion.user_id
-    #   redirect_to "/discussions", :notice => "Page access denied"
-    # end
+    if current_user.id != @discussion.user_id
+      redirect_to "/discussions", :alert => "Page access denied"
+    end
   end
 
   def update

@@ -29,7 +29,7 @@
           Contact
         </label>
 
-        <%= select_tag(:contact_id, options_from_collection_for_select(Contact.all, :id, :name, @discussion.contact_id), :class => "form-control")%>
+        <%= select_tag(:contact_id, options_from_collection_for_select(Contact.where(user_id: current_user.id).order(:name), :id, :name, @discussion.contact_id), :class => "form-control")%>
         <p><a href="/contacts/new">or add a new contact</a></p>
       </div>
 
