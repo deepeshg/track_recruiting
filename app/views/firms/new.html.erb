@@ -46,8 +46,8 @@
         <label for="on_campus" class="control-label">
           On campus
         </label>
+        <%= select_tag(:on_campus, options_for_select(["Yes","No"], "Yes"), :class => "form-control")%>
 
-        <input type="text" id="on_campus" name="on_campus" placeholder="On campus" class="form-control" value="<%= @firm.on_campus %>">
       </div>
 
       <!-- Label and input for location -->
@@ -73,8 +73,8 @@
         <label for="functional_fit" class="control-label">
           Functional fit
         </label>
+        <%= select_tag(:functional_fit, options_for_select(["Yes","No"], "Yes"), :class => "form-control")%>
 
-        <input type="text" id="functional_fit" name="functional_fit" placeholder="Functional fit" class="form-control" value="<%= @firm.functional_fit %>">
       </div>
 
       <!-- Label and input for industry_fit -->
@@ -82,8 +82,8 @@
         <label for="industry_fit" class="control-label">
           Industry fit
         </label>
+        <%= select_tag(:industry_fit, options_for_select(["Yes","No"], "Yes"), :class => "form-control")%>
 
-        <input type="text" id="industry_fit" name="industry_fit" placeholder="Industry fit" class="form-control" value="<%= @firm.industry_fit %>">
       </div>
 
       <!-- Label and input for booth_alumni -->
@@ -92,7 +92,7 @@
           Booth alumni
         </label>
 
-        <input type="text" id="booth_alumni" name="booth_alumni" placeholder="Booth alumni" class="form-control" value="<%= @firm.booth_alumni %>">
+        <%= select_tag(:booth_alumni, options_for_select(["Yes","No"], "Yes"), :class => "form-control")%>
       </div>
 
       <!-- Label and input for firm_score -->
@@ -113,7 +113,7 @@
         <textarea id="notes" name="notes" placeholder="Notes" class="form-control" rows="3"><%= @firm.notes %></textarea>
       </div>
 
-      <button class="btn btn-success">
+      <button class="btn btn-primary">
         Create Firm
       </button>
       or

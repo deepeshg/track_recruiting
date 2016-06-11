@@ -1,0 +1,109 @@
+<div class="page-header">
+  <h2>Welcome, <%= current_user.username %>!</h2>
+<div class="row">
+  <div class="col-md-7">
+    <p>This is your recruiting dashboard.
+      It will help you keep track of all your campus recruiting activities.
+      Manage your target companies, contacts and  networking opportunities to stay ahead of the curve!
+    </p>
+  </div>
+</div>
+  <!-- <h4>This is your recruiting dashboard</h4> -->
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+
+    <h3>Your upcoming follow-up discussions <a href="/events/new" class="btn  btn-primary"><i class="fa fa-plus"></i></a></h3>
+
+    <table class="table table-striped table-hover">
+      <tr>
+      <!-- <th>#</th> -->
+      <th class="col-md-2">Contact name</th>
+      <th class="col-md-2">Firm</th>
+      <th class="col-md-2">Last discussion</th>
+      <th class="col-md-2">Upcoming discussion</th>
+      <th class="col-md-2">Response Status</th>
+      <th class="col-md-2">Edit / Archive</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <% @discussions.each do |discussion| %>
+    <% if discussion.user_id == current_user.id %>
+    <% if discussion.follow_up == "Yes" %>
+    <tr>
+      <td class="col-md-2"><a href="/contacts/<%= discussion.contact.id %>"><%= discussion.contact.name %></a></td>
+      <td class="col-md-2"><a href="/firms/<%= discussion.contact.firm.id %>"><%= discussion.contact.firm.name %></a></td>
+      <!-- <td><%= discussion.contact.name %></td> -->
+      <td class="col-md-2"><%= discussion.date.to_formatted_s(:long)  %></td>
+      <!-- <td><%= discussion.notes %></td> -->
+      <!-- <td><%= discussion.follow_up %></td> -->
+      <td class="col-md-2"><%= discussion.follow_up_time.to_formatted_s(:long)  %></td>
+      <td  class="col-md-2"><%= discussion.priority %></td>
+      <td  class="col-md-2">
+        <a href="/discussions/new" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+        <a href="/toggle_discussion/<%= discussion.id %>" class="btn btn-warning"><span class="glyphicon glyphicon-level-up" aria-hidden="true"></span></a>
+        <!-- <a href="/discussions/<%= discussion.id %>/edit" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+      </td>
+    </tr>
+    <% end %>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <h3>Your upcoming company events <a href="/events/new" class="btn  btn-primary"><i class="fa fa-plus"></i></a></h3>
+    <table class="table table-striped table-hover">
+      <tr>
+      <!-- <th>#</th> -->
+      <th class="col-md-2">Event Name</th>
+      <th  class="col-md-2">Firm</th>
+      <th  class="col-md-2">Event Type</th>
+      <th  class="col-md-2">Event Time</th>
+      <th  class="col-md-2">Priority</th>
+      <th  class="col-md-2">Edit / Archive</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @events.each do |event| %>
+    <% if event.user_id == current_user.id %>
+    <% if event.past_event != true %>
+    <tr>
+      <td  class="col-md-2"><a href="/events/<%= event.id %>"><%= event.event_name %></a></td>
+      <td  class="col-md-2"><a href="/firms/<%= event.firm.id %>"><%= event.firm.name %></a></td>
+      <td  class="col-md-2"><%= event.event_type %></td>
+      <td  class="col-md-2"><%= event.time.to_formatted_s(:long) %></td>
+      <td  class="col-md-2"><%= event.priority %></td>
+      <td  class="col-md-2">
+        <a href="/events/<%= event.id %>/edit" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+        <a href="/toggle_event/<%= event.id %>" class="btn btn-warning"><span class="glyphicon glyphicon-level-up" aria-hidden="true"></span></a>
+        <!-- <a href="/events/<%= event.id %>/edit" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
+
+      </td>
+    </tr>
+    <!-- <tr>
+    </tr>
+    <tr class="info">
+    </tr>
+    <tr class="success">
+    </tr>
+    <tr class="danger">
+    </tr>
+    <tr class="warning">
+    </tr>
+    <tr class="active">
+    </tr> -->
+    <% end %>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>

@@ -38,8 +38,11 @@
           Firm
         </label>
 
-        <input type="text" id="firm_id" name="firm_id" placeholder="Firm" class="form-control" value="<%= @contact.firm_id %>">
+        <%= select_tag(:firm_id, options_from_collection_for_select(Firm.where(user_id: current_user.id).order(:name), :id, :name, @contact.firm_id), :class => "form-control")%>
+        <p><a href="/firms/new">or add a new firm</a></p>
+
       </div>
+
 
       <!-- Label and input for email -->
       <div class="form-group">
@@ -77,7 +80,7 @@
         <textarea id="notes" name="notes" placeholder="Notes" class="form-control" rows="3"><%= @contact.notes %></textarea>
       </div>
 
-      <button class="btn btn-success">
+      <button class="btn btn-primary">
         Create Contact
       </button>
       or

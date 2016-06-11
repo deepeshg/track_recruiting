@@ -1,8 +1,35 @@
 <div class="page-header">
   <h1>
     Firms
-    <a href="/firms/new" class="btn btn-lg btn-success">New Firm</a>
+    <a href="/firms/new" class="btn btn-primary">New Firm</a>
   </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+
+    <%= search_form_for @q do |f| %>
+  <p class="lead">Narrow results:</p>
+
+  <div class="form-group">
+    <%= f.label :name_cont, "Firm name containing" %>
+    <%= f.text_field :name_cont, :class => "form-control", :placeholder => "Enter a few characters" %>
+  </div>
+
+  <%= f.submit :class => "btn btn-primary " %>
+
+  <a href="/firms" class="btn btn-success ">Clear filters</a>
+<% end %>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <p>
+
+    </p>
+  </div>
 </div>
 
 <div class="row">
@@ -12,34 +39,43 @@
         <th>Name</th>
         <th>Industry</th>
         <th>On campus</th>
-        <th>Location</th>
-        <th>Geography</th>
+        <!-- <th>Location</th> -->
+        <!-- <th>Geography</th> -->
         <th>Functional fit</th>
         <th>Industry fit</th>
         <th>Booth alumni</th>
         <th>Firm score</th>
         <th>Notes</th>
-        <th>Actions</th>
+        <th>Edit / Delete</th>
       </tr>
 
       <% @firms.each do |firm| %>
+      <% if firm.user_id == current_user.id %>
       <tr>
-        <td><%= firm.name %></td>
+        <td><a href="/firms/<%= firm.id %>"><%= firm.name %></a></td>
         <td><%= firm.industry %></td>
         <td><%= firm.on_campus %></td>
-        <td><%= firm.location %></td>
-        <td><%= firm.geography %></td>
+        <!-- <td><%= firm.location %></td> -->
+        <!-- <td><%= firm.geography %></td> -->
         <td><%= firm.functional_fit %></td>
         <td><%= firm.industry_fit %></td>
         <td><%= firm.booth_alumni %></td>
         <td><%= firm.firm_score %></td>
         <td><%= firm.notes %></td>
         <td>
-          <a href="/firms/<%= firm.id %>" class="btn btn-primary">Show</a>
-          <a href="/firms/<%= firm.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_firm/<%= firm.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+
+          <a href="/firms/<%= firm.id %>/edit" class="btn btn-primary">
+            <!-- <i class="fa fa-pencil-square-o" aria-hidden="true"></i> -->
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+          </a>
+          <a href="/delete_firm/<%= firm.id %>" class="btn btn-danger" rel="nofollow">
+            <!-- <i class="fa fa-trash-o" aria-hidden="true"></i> -->
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </a>
         </td>
       </tr>
+      <% end %>
+
       <% end %>
     </table>
   </div>

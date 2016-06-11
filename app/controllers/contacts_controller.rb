@@ -1,14 +1,42 @@
 class ContactsController < ApplicationController
   def index
-    @contacts = Contact.all
+    @q = Contact.ransack(params[:q])
+    @contacts = @q.result
   end
 
   def show
     @contact = Contact.find(params[:id])
+    if current_user.id != @contact.user_id
+      redirect_to "/contacts", :alert => "Page access denied"
+    end
+
+    require 'open-uri'
+    url_contact_name = URI.encode(@contact.name)
+    url_firm_name = URI.encode(@contact.firm.name)
+    api_key = ENV["linkedin_search_api_key"]
+    begin
+    url = "https://www.googleapis.com/customsearch/v1?q="+url_contact_name+"+"+url_firm_name+ENV["linkedin_search_api_key"]
+    raw_data=open(url).read
+    require 'json'
+    parsed_data = JSON.parse(raw_data)
+    result = parsed_data["items"][0]
+    @linkedin_link = result["link"]
+    @org = result["pagemap"]["person"][0]["org"]
+    @location = result["pagemap"]["person"][0]["location"]
+    @role = result["pagemap"]["person"][0]["role"]
+  rescue
+    # code in case of an error here
+    @linkedin_link = "https://www.linkedin.com"
+    # @org = result["pagemap"]["person"][0]["org"]
+    # @location = result["pagemap"]["person"][0]["location"]
+    # @role = result["pagemap"]["person"][0]["role"]
+  end
+
   end
 
   def new
     @contact = Contact.new
+    @firms = Firm.all
   end
 
   def create
@@ -30,6 +58,9 @@ class ContactsController < ApplicationController
 
   def edit
     @contact = Contact.find(params[:id])
+    if current_user.id != @contact.user_id
+      redirect_to "/contacts", :alert => "Page access denied"
+    end
   end
 
   def update

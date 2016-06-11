@@ -5,6 +5,9 @@ class DiscussionsController < ApplicationController
 
   def show
     @discussion = Discussion.find(params[:id])
+    if current_user.id != @discussion.user_id
+      redirect_to "/discussions", :alert => "Page access denied"
+    end
   end
 
   def new
@@ -14,10 +17,10 @@ class DiscussionsController < ApplicationController
   def create
     @discussion = Discussion.new
     @discussion.contact_id = params[:contact_id]
-    @discussion.date = params[:date]
+    @discussion.date = Chronic.parse(params[:date])
     @discussion.notes = params[:notes]
     @discussion.follow_up = params[:follow_up]
-    @discussion.follow_up_time = params[:follow_up_time]
+    @discussion.follow_up_time = Chronic.parse(params[:follow_up_time])
     @discussion.priority = params[:priority]
     @discussion.user_id = params[:user_id]
 
@@ -30,16 +33,20 @@ class DiscussionsController < ApplicationController
 
   def edit
     @discussion = Discussion.find(params[:id])
+
+    if current_user.id != @discussion.user_id
+      redirect_to "/discussions", :alert => "Page access denied"
+    end
   end
 
   def update
     @discussion = Discussion.find(params[:id])
 
     @discussion.contact_id = params[:contact_id]
-    @discussion.date = params[:date]
+    @discussion.date = Chronic.parse(params[:date])
     @discussion.notes = params[:notes]
     @discussion.follow_up = params[:follow_up]
-    @discussion.follow_up_time = params[:follow_up_time]
+    @discussion.follow_up_time = Chronic.parse(params[:follow_up_time])
     @discussion.priority = params[:priority]
     @discussion.user_id = params[:user_id]
 
@@ -56,5 +63,15 @@ class DiscussionsController < ApplicationController
     @discussion.destroy
 
     redirect_to "/discussions", :notice => "Discussion deleted."
+  end
+
+  def toggle_discussion
+    @discussion = Discussion.find(params[:id])
+    @discussion.follow_up = "No"
+    if @discussion.save
+    redirect_to "/", :notice => "Discussion removed from follow-up list."
+    else
+    render 'edit'
+    end
   end
 end

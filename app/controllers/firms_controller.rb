@@ -1,10 +1,31 @@
 class FirmsController < ApplicationController
   def index
-    @firms = Firm.all
+    # @firms = Firm.all
+    @q = Firm.ransack(params[:q])
+    @firms = @q.result
   end
 
   def show
     @firm = Firm.find(params[:id])
+    if current_user.id != @firm.user_id
+      redirect_to "/firms", :alert => "Page access denied"
+    end
+
+    require 'open-uri'
+  begin
+    url_firm_name = URI.encode(@firm.name)
+    api_key = ENV["linkedin_search_api_key"]
+    url = "https://www.googleapis.com/customsearch/v1?q="+url_firm_name+ENV["linkedin_search_api_key"]
+    raw_data=open(url).read
+    require 'json'
+    parsed_data = JSON.parse(raw_data)
+    result = parsed_data["items"][0]
+    @linkedin_link = result["link"]
+  rescue
+    # code in case of an error here
+    @linkedin_link = "https://www.linkedin.com"
+  end
+
   end
 
   def new
@@ -34,6 +55,9 @@ class FirmsController < ApplicationController
 
   def edit
     @firm = Firm.find(params[:id])
+    if current_user.id != @firm.user_id
+      redirect_to "/firms", :alert => "Page access denied"
+    end
   end
 
   def update

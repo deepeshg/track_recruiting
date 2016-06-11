@@ -6,10 +6,13 @@
   <div class="col-md-12">
     <dl class="dl-horizontal">
       <dt>Contact</dt>
-      <dd><%= @discussion.contact_id %></dd>
+      <dd><a href="/contacts/<%= @discussion.contact.id %>"><%= @discussion.contact.name %></a></dd>
+
+      <dt>Firm</dt>
+      <dd><a href="/firm/<%= @discussion.contact.firm.id %>"><%= @discussion.contact.firm.name %></a></dd>
 
       <dt>Date</dt>
-      <dd><%= @discussion.date %></dd>
+      <dd><%= @discussion.date.to_formatted_s(:long)  %></dd>
 
       <dt>Notes</dt>
       <dd><%= @discussion.notes %></dd>
@@ -18,7 +21,7 @@
       <dd><%= @discussion.follow_up %></dd>
 
       <dt>Follow up time</dt>
-      <dd><%= @discussion.follow_up_time %></dd>
+      <dd><%= @discussion.follow_up_time.to_formatted_s(:long)  %></dd>
 
       <dt>Priority</dt>
       <dd><%= @discussion.priority %></dd>
@@ -26,15 +29,12 @@
     </dl>
 
     <div class="btn-group btn-group-justified">
-      <a href="/discussions" class="btn btn-primary">
-        Back
+      <a href="/contacts" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back
       </a>
-      <a href="/discussions/<%= @discussion.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_discussion/<%= @discussion.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
+      <% if @discussion.user_id == current_user.id %>
+        <a href="/discussions/<%= @discussion.id %>/edit" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+        <a href="/delete_discussion/<%= @discussion.id %>" class="btn btn-danger" rel="nofollow"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>
+        <% end %>
     </div>
   </div>
 </div>
