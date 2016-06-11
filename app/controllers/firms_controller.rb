@@ -1,6 +1,8 @@
 class FirmsController < ApplicationController
   def index
-    @firms = Firm.all
+    # @firms = Firm.all
+    @q = Firm.ransack(params[:q])
+    @firms = @q.result
   end
 
   def show

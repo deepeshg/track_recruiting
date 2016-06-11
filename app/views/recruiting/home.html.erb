@@ -1,5 +1,13 @@
 <div class="page-header">
   <h2>Welcome, <%= current_user.username %>!</h2>
+<div class="row">
+  <div class="col-md-7">
+    <p>This is your recruiting dashboard.
+      It will help you keep track of all your campus recruiting activities.
+      Manage your target companies, contacts and  networking opportunities to stay ahead of the curve!
+    </p>
+  </div>
+</div>
   <!-- <h4>This is your recruiting dashboard</h4> -->
 </div>
 
@@ -15,8 +23,8 @@
       <th class="col-md-2">Firm</th>
       <th class="col-md-2">Last discussion</th>
       <th class="col-md-2">Upcoming discussion</th>
-      <th class="col-md-2">Priority</th>
-      <th class="col-md-2">Action</th>
+      <th class="col-md-2">Response Status</th>
+      <th class="col-md-2">Edit / Archive</th>
     </tr>
   </thead>
   <tbody>
@@ -35,7 +43,7 @@
       <td  class="col-md-2"><%= discussion.priority %></td>
       <td  class="col-md-2">
         <a href="/discussions/new" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-        <a href="/toggle_discussion/<%= discussion.id %>" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+        <a href="/toggle_discussion/<%= discussion.id %>" class="btn btn-warning"><span class="glyphicon glyphicon-level-up" aria-hidden="true"></span></a>
         <!-- <a href="/discussions/<%= discussion.id %>/edit" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
       </td>
     </tr>
@@ -60,7 +68,7 @@
       <th  class="col-md-2">Event Type</th>
       <th  class="col-md-2">Event Time</th>
       <th  class="col-md-2">Priority</th>
-      <th  class="col-md-2">Action</th>
+      <th  class="col-md-2">Edit / Archive</th>
     </tr>
   </thead>
   <tbody>
@@ -71,11 +79,11 @@
       <td  class="col-md-2"><a href="/events/<%= event.id %>"><%= event.event_name %></a></td>
       <td  class="col-md-2"><a href="/firms/<%= event.firm.id %>"><%= event.firm.name %></a></td>
       <td  class="col-md-2"><%= event.event_type %></td>
-      <td  class="col-md-2"><%= event.time %></td>
+      <td  class="col-md-2"><%= event.time.to_formatted_s(:long) %></td>
       <td  class="col-md-2"><%= event.priority %></td>
       <td  class="col-md-2">
         <a href="/events/<%= event.id %>/edit" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-        <a href="/toggle_event/<%= event.id %>" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+        <a href="/toggle_event/<%= event.id %>" class="btn btn-warning"><span class="glyphicon glyphicon-level-up" aria-hidden="true"></span></a>
         <!-- <a href="/events/<%= event.id %>/edit" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a> -->
 
       </td>

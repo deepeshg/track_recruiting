@@ -24,7 +24,7 @@
         <td><%= event.event_name %></td>
         <td><%= event.firm.name %></td>
         <td><%= event.event_type %></td>
-        <td><%= event.time %></td>
+        <td><%= event.time.to_formatted_s(:long) %></td>
         <td><%= event.location %></td>
         <td><%= event.priority %></td>
         <!-- <td><%= event.past_event %></td> -->

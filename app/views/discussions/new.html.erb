@@ -73,10 +73,10 @@
       <!-- Label and input for priority -->
       <div class="form-group">
         <label for="priority" class="control-label">
-          Priority
+          Response status
         </label>
 
-        <%= select_tag(:priority, options_for_select(["Low","Medium","High"], "High"), :class => "form-control")%>
+        <%= select_tag(:priority, options_for_select(["Need to contact","Response pending","Confirmed"], "Need to reach out"), :class => "form-control")%>
       </div>
 
       <button class="btn btn-primary">

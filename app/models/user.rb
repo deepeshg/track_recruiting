@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :firms, dependent: :destroy
   has_many :contacts, dependent: :destroy
   has_many :discussions, dependent: :destroy
+  has_many :events, dependent: :destroy
   has_many :discussed_contacts, :through => :discussions, :source => :contact, dependent: :destroy
 
 end
